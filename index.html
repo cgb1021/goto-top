@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>goto top 返回顶部</title>
+<link href="https://rawgit.com/cgb1021/html5/master/reset.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<style>
+body {
+	padding:20px;
+}
+p {
+	margin:10px 0;}
+.very-height{height:4000px;}
+.red {color:red;}
+</style>
+</head>
+<body>
+<div class="very-height"><h1>goto top 返回顶部</h1>
+<div>
+  <p>调用方式:</p>
+  <pre class="red">
+&lt;script&gt;
+new gotoTop({node:document.getElementById('goto_top')});
+&lt;/script&gt;
+</pre>
+  <p>参数说明:</p>
+  <p>
+  <ul>
+    <li>node:返回顶部按钮</li>
+    <li>stateChangeHeight:显示滚动按钮的临界高度</li>
+    <li>speed:返回顶部时的滚动速度</li>
+    <li>clickEvent:按钮点击事件</li>
+    <li>scrollEvent:滚动事件</li>
+  </ul>
+  </p>
+  <p><span class="red">在事件中，能用的数据有：this.isStateHide，this.scrollTop。</span>isStateHide是否按钮已经隐藏，scrollTop滚动条和顶部的距离。使用问题请联系：48838096@qq.com</p>
+  <p class="red">按钮不需要自动隐藏的话，把样式表里的.hide注释掉。</p>
+  <p>使用问题请联系：48838096@qq.com</p>
+</div>
+</div>
+<div class="helper-buttons"><a href="#" class="btn feedback"><span>反馈问题</span></a><a href="#" id="goto_top" class="btn gotop hide"><span>回到顶部</span></a>
+<script src="https://rawgit.com/cgb1021/html5/master/html5.min.js"></script>
+<script src="goto-top.min.js"></script> 
+<script>
+new gotoTop({node:document.getElementById('goto_top')});
+</script>
+</body>
+</html>

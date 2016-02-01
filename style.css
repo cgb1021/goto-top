@@ -1,0 +1,49 @@
+.helper-buttons {
+    width:56px;
+    position: fixed;
+    right: 2px;
+    bottom: 30px;
+}
+.helper-buttons.show {
+    visibility:visible;
+}
+.helper-buttons .btn {
+    width:56px;
+    height: 56px;
+    text-align: center;
+    text-indent:-3333em;
+    font-size: 14px;
+    line-height: 56px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition: height .2s linear;
+}
+.helper-buttons .btn:hover {
+    color:white;
+    background:#ff8900;
+    border-radius:3px;
+    text-indent:0;
+}
+.no-border-radius .helper-buttons .btn:hover {
+    background:url(images/helper-button-hover.png) 0 0 no-repeat;
+}
+.helper-buttons .btn:hover span {
+    line-height:16px;
+    display: inline-block;
+    width: 40px;
+    vertical-align: middle;
+    *position: relative;
+    *top: 50%;
+    *margin-top:-16px;
+}
+.helper-buttons .gotop {
+    background: url(images/sprite.png) 0 0 no-repeat;
+}
+.helper-buttons .feedback {
+    background: url(images/sprite.png) -56px 0 no-repeat;
+}
+.helper-buttons .btn.hide {
+    height:0px;
+    overflow: hidden;
+}

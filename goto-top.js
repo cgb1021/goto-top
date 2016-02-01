@@ -1,9 +1,13 @@
 /*
- * gototop
- * chenguibiao@yy.com
+ * 返回顶部按钮
+ * http://xhyo.com/
+ * Copyright (c) 2015 Bill Chen(chenguibiao@yy.com/48838096@qq.com)
+ *
+ * 需要html5.js
  *
  */
 (function(window){
+    var document = window.document;
     var addEvent = (function(){
         return window.addEventListener?
             function(dom, type, fn){dom.addEventListener(type, fn);}:
@@ -16,29 +20,33 @@
     };
     var classList = html5Test.classList?null:window.classList;
 
+    var node = null; //点击回到顶部按钮
     var intervalId = 0; //setInterval ID
     var stateChangeHeight = 0; //显示先上按钮状态高度
-    var scrollHeight = 0; //向上每次滚动距离
-    var node = null; //点击回到顶部按钮
+    var speed = 0; //返回顶部滚动速度
+    var isStateHide = true; //是否隐藏
+    var scrollTop = 0; //滚动条距离
     var clickEvent = null; //按钮点击事件
     var scrollEvent = null; //滚动事件
-    var isStateHide = false; //是否隐藏
-    var scrollTop = 0; //滚动条距离
 
     window.gotoTop = function(option){
         node = option.node;
         stateChangeHeight = option.stateChangeHeight||document.documentElement.clientHeight*0.2;
-        scrollHeight = option.scrollHeight || document.documentElement.clientHeight*0.2;
+        speed = option.speed || document.documentElement.clientHeight*0.2;
         clickEvent = typeof option.clickEvent == 'function'?bind(this, option.clickEvent):function(){};
         scrollEvent = typeof option.scrollEvent == 'function'? bind(this, option.scrollEvent):function(){};
 
-        this.isStateHide = false;
-        this.scrollTop = scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-        if(scrollTop > stateChangeHeight) {
-            //显示按钮
-            node.classList.remove('hide');
-            this.isStateHide = isStateHide = false;
-        }
+        this.isStateHide = true;
+        window.setTimeout(bind(this, function(){
+            this.scrollTop = scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+            if(scrollTop > stateChangeHeight) {
+                //显示按钮
+                if(html5Test.classList)
+                    node.classList.remove('hide');
+                else
+                    classList.remove(node, 'hide');
+                this.isStateHide = isStateHide = false;
+            }}), 100);
 
         addEvent(node, 'click', bind(this, function(e){
             if(e.preventDefault)
@@ -55,7 +63,7 @@
                     window.clearInterval(intervalId);
                     intervalId = 0;
                 }
-                window.scrollTo(0, scrollTop-scrollHeight);
+                window.scrollTo(0, scrollTop-speed);
                 //console.log('gotop');
             }, 25);
 
